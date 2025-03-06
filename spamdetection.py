@@ -39,15 +39,6 @@ feature_test=cv.transform(mess_test)
 
 #predicting the category of the message
 
-# message=cv.transform(["We are pleased to inform you that you have won the international lottery! Your winning amount is $1,000,000. To claim your prize, please provide your full name, address, and banking details."]).toarray()
-# result=model.predict(message)
-# print(result) #category of the message
-def predict(message):
-    input_message=cv.transform([message]).toarray()
-    result=model.predict(input_message)
-    return result
-st.header('Spam Detection App')
-user_input = st.text_input('Enter your message here:')
-if st.button('Predict'):
-    result = predict(user_input)
-    st.write(result)
+message=cv.transform(["We are pleased to inform you that you have won the international lottery! Your winning amount is $1,000,000. To claim your prize, please provide your full name, address, and banking details."]).toarray()
+result=model.predict(message)
+print(result) #category of the message
