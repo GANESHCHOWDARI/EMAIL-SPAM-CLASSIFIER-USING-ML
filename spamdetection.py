@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
+import streamlit as st
 
 # Load the data
 data=pd.read_csv('./spam.csv')
@@ -38,6 +39,22 @@ feature_test=cv.transform(mess_test)
 
 #predicting the category of the message
 
-message=cv.transform(["We are pleased to inform you that you have won the international lottery! Your winning amount is $1,000,000. To claim your prize, please provide your full name, address, and banking details."]).toarray()
-result=model.predict(message)
-print(result) #category of the message
+# message=cv.transform(["We are pleased to inform you that you have won the international lottery! Your winning amount is $1,000,000. To claim your prize, please provide your full name, address, and banking details."]).toarray()
+# result=model.predict(message)
+# print(result) #category of the message
+
+
+def predict(message):
+  input_message=cv.transform([message]).toarray()
+  result=model.predict(input_message)
+  return result
+
+st.header('Spam Detection')
+input_mess=st.text_input("enter message)
+if st.button('validate'):
+       output= predict(input_mess)
+       st.markdown(output)
+
+
+
+
